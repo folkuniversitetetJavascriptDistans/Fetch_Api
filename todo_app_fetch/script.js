@@ -1,9 +1,11 @@
 // skapa en function för att hämta data
 // skapa en funktion för att lägga till data
-// skapa DOM för att visa upp data
-// skapa en eventlistener på knappen som anropar functionen addTodo(functions namn)
+// skapa en funktion för att radera data
+// skapa en funktion för att updatera data
+// skapaen function för att visa upp data
+// skapa en eventlistener på knappar
 // visa max 5 användare från start
-// fånga upp felmeddelanden om servern inte svarar
+// fånga upp felmeddelanden om servern inte svarar eller ändra fel
 
 const todoInput = document.getElementById("todoInput");
 const addTodoButton = document.getElementById("addTodoButton");
@@ -47,22 +49,22 @@ const addTodo = async () => {
         throw new Error("Failed to add a new todo");
       }
       const data = await response.json();
-      // Display the newly added todo after it's created on the backend.
+      // visa den updaterade listan efler att du har lagt till en ny rad
       addTodoList(data);
-      todoInput.value = ""; // Clear the input field
+      todoInput.value = ""; // rensa inputfältet
     } catch (error) {
       console.error("Error adding a new todo:", error);
     }
   }
 };
-/******** function för att kunna lägga in data via inputfältet**************/
 
+/******** function för att kunna lägga in data via inputfältet**************/
 const addTodoList = (todo) => {
   const li = document.createElement(`li`);
   const taskSpan = document.createElement(`span`);
   taskSpan.textContent = todo.title;
 
-  // uppdatera lista
+  // button för att uppdatera listan
   const updateButton = document.createElement("button");
   updateButton.textContent = "update";
   updateButton.addEventListener("click", () => {
@@ -73,13 +75,13 @@ const addTodoList = (todo) => {
   });
   /**** *****/
 
-  //deleta lista
+  //button för att radera listan
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "delete";
   deleteButton.addEventListener("click", () => {
     deleteTodo(todo.id, li);
   });
-  /**** ****/
+  /**** lägga till all data i ul elementet* ***/
   li.append(taskSpan);
   li.append(updateButton);
   li.append(deleteButton);
@@ -98,17 +100,17 @@ const addTodoToList = (todo) => {
     const updatedTitle = prompt("Update the task:", taskSpan.textContent);
     if (updatedTitle) {
       // uppdatera förändringar
-      /* updateTodo(todo.id, updatedTitle, taskSpan); */
+
       const result = updateTodo(todo.id, updatedTitle, taskSpan);
       console.log(result);
     }
   });
 
-  // lägg till deletebutton
+  // lägg till en delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.addEventListener("click", () => {
-    // ta bort lista
+    // ta bort listan
     deleteTodo(todo.id, li);
   });
 
@@ -118,7 +120,7 @@ const addTodoToList = (todo) => {
   todoList.appendChild(li);
 };
 
-// function to update todo
+// function för att uppdatera listan
 const updateTodo = async (todoId, updatedTitle, taskSpan) => {
   console.log("Updating todo:", todoId, updatedTitle);
   try {
@@ -128,7 +130,7 @@ const updateTodo = async (todoId, updatedTitle, taskSpan) => {
         method: "PUT",
         body: JSON.stringify({
           title: updatedTitle,
-          completed: false, // Add any other properties you want to update
+          completed: false, // kan användas för att kolla vilka tasks somhar gjorts
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -145,7 +147,7 @@ const updateTodo = async (todoId, updatedTitle, taskSpan) => {
   }
 };
 
-// function to delete todo
+// function för att radera listan
 const deleteTodo = async (todoId, listItem) => {
   console.log(todoId);
   try {

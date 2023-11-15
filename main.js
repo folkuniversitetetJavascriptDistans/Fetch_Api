@@ -1,36 +1,4 @@
-/* fetch("https://jsonplaceholder.typicode.com/todos/1")
-  .then((response) => response.json())
-  .then((json) => console.log(json));
-
-fetch("https://majazocom.github.io/Data/pokemons.json")
-  .then((response) => response.json())
-  .then((json) => console.log(json));
-
-function fetchPokemonData(pokemon) {
-  fetch(pokemon.url)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // Do something with the data
-    });
-}
-
-function fetchKantoPokemon() {
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=15")
-    .then((response) => response.json())
-    .then((allpokemon) => {
-      allpokemon.results.forEach((pokemon) => {
-        fetchPokemonData(pokemon);
-      });
-    });
-}
-
-fetchKantoPokemon(); */
-
-/* const person = [{ name: "kalle" }, { name: "urban" }, { name: "Andreas" }]; */
-
-const API_KEY =
-  "8f5cb789968ba70de1bf09bc1bf0aa979af568b6dd64a9a9c27758556041d409";
+const API_KEY = "din_egna_API_KEY";
 const BASE_URL = "https://api.unsplash.com";
 
 const imagesElem = document.querySelector("#images");
