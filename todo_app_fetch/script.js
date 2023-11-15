@@ -49,6 +49,7 @@ const addTodo = async () => {
         throw new Error("Failed to add a new todo");
       }
       const data = await response.json();
+
       // visa den updaterade listan efler att du har lagt till en ny rad
       addTodoList(data);
       todoInput.value = ""; // rensa inputfältet
@@ -98,11 +99,11 @@ const addTodoToList = (todo) => {
   updateButton.textContent = "Update";
   updateButton.addEventListener("click", () => {
     const updatedTitle = prompt("Update the task:", taskSpan.textContent);
+    console.log(updatedTitle);
     if (updatedTitle) {
       // uppdatera förändringar
 
-      const result = updateTodo(todo.id, updatedTitle, taskSpan);
-      console.log(result);
+      updateTodo(todo.id, updatedTitle, taskSpan);
     }
   });
 
