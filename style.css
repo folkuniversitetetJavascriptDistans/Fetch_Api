@@ -1,0 +1,10 @@
+.wrapper {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+}
+
+img {
+  aspect-ratio: 1 / 1;
+}
