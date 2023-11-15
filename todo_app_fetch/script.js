@@ -93,7 +93,7 @@ const addTodoToList = (todo) => {
   const taskSpan = document.createElement("span");
   taskSpan.textContent = todo.title;
 
-  // Lägg till uppdatera
+  // Lägg till uppdatera button
   const updateButton = document.createElement("button");
   updateButton.textContent = "Update";
   updateButton.addEventListener("click", () => {
